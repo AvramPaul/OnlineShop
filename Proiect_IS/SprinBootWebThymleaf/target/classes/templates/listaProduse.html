@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista produse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .product-container {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #333333;
+            position: relative; /* Asigură poziționarea relativă a containerului produsului */
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .product-description {
+            font-size: 16px;
+            color: #555555;
+            margin-bottom: 10px; /* Reducem spațiul dintre descriere și badge-ul de vânzător */
+            min-height: 70px; /* Setăm înălțimea minimă pentru a asigura suficient spațiu pentru descriere */
+        }
+
+        .seller-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .fixed-button {
+            position: fixed;
+            top: 20px; /* Distanța față de partea de sus a ecranului */
+            right: 20px; /* Distanța față de partea dreaptă a ecranului */
+            z-index: 999; /* Asigură că butonul va fi întotdeauna deasupra altor elemente */
+        }
+
+        .negotiable-price {
+            color: red; /* Schimbăm culoarea textului la roșu */
+            font-weight: bold; /* Facem textul mai îngroșat pentru a fi mai vizibil */
+        }
+    </style>
+</head>
+<body>
+<header>
+
+</header>
+<a href="/adaugare_produse" class="btn btn-primary fixed-button">Adauga Produs la vanzare</a>
+<div class="container">
+    <h1 class="mt-5 mb-4">Lista de produse</h1>
+    <div class="row">
+        <div th:each="produs : ${produse}" class="col-md-4">
+            <div class="product-container">
+                <div class="product-title" th:text="${produs.denumire}"></div>
+                <div class="product-description" th:text="${produs.descriere}"></div>
+                <div class="product-description">
+                    <span th:if="${produs.negociabil}" class="negotiable-price">NEGOCIABIL</span>
+                    <span th:unless="${produs.negociabil}" th:text="${produs.pret + ' RON'}"></span>
+                </div>
+                <div class="seller-badge" th:text="'Vanzator: '+${produs.vanzator}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
