@@ -15,5 +15,31 @@ public class ContWebController {
     @Autowired
     ContRepository repository;
 
+    @GetMapping("/conturi")
+    public String getListaConturi(Model model)
+    {
+        model.addAttribute("conturi", repository.findAll());
+        return "listaConturi";
+    }
+
+    @GetMapping("/adaugare_cont")
+    public String adaugareCont(@RequestParam String nume, @RequestParam String email, @RequestParam String parola) {
+        Cont cont = new Cont();
+        cont.setNume(nume);
+        cont.setEmail(email);
+        cont.setParola(parola);
+
+        repository.save(cont);
+
+        return "redirect:/conturi";
+    }
+    @GetMapping("/stergere_cont")
+    public String deleteAccount(@RequestParam("id") Integer id) {
+        //delete the account by id
+        repository.deleteById(id);
+
+        return "redirect:/conturi";
+    }
+
 
 }
