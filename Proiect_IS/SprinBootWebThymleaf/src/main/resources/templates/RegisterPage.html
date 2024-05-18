@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Înregistrare cont</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .form-container {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            color: #333333;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header>
+</header>
+<div class="container">
+    <div class="form-container">
+        <h2 class="form-title">Înregistrare cont</h2>
+        <form th:action="@{/inregistrare_cont}" method="GET">
+            <div class="form-group">
+                <label class="form-label" for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="parola">Parola:</label>
+                <input type="password" id="parola" name="parola" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="nume">Nume:</label>
+                <input type="text" id="nume" name="nume" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="role">Rol:</label>
+                <input type="text" id="role" name="role" class="form-input" required>
+            </div>
+            <button type="submit" class="submit-button">Înregistrează-te</button>
+            <button type="button" class="submit-button" onclick="window.location.href='/login'">Înapoi la Login</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

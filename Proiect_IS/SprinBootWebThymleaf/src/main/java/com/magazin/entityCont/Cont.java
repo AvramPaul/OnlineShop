@@ -18,34 +18,6 @@ public class Cont {
     private int id;
     private String email;
     private String parola;
-    @Setter
-    @Getter
     private String nume;
-
-    public Cont(int i, String john, String mail, String password) {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getParola() {
-        return parola;
-    }
-
-    public void setParola(String parola) {
-        this.parola = parola;
-    }
+    private String role;
 }

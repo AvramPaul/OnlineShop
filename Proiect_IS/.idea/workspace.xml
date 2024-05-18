@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2bb774b-c370-45c0-b797-8048deea114b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/SprinBootWebThymleafApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/controller/ContWebController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/controller/ProdusWebController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/entityCont/Cont.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/entityProdus/Produs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/repositoryCont/ContRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/classes/com/magazin/repositoryProdus/ProdusRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SprinBootWebThymleaf/target/test-classes/com/magazin/SprinBootWebThymleafApplicationTests.class" beforeDir="false" />
-    </list>
+    <list default="true" id="c2bb774b-c370-45c0-b797-8048deea114b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,9 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2gdSEIhDiwhxw3xbNmUl6x6fS7q" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,22 +20,30 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Viorel/Desktop/WebDev/OnlineShop/Proiect_IS/SprinBootWebThymleaf",
+    "last_opened_file_path": "C:/Users/palinca/Desktop/Proiect_IS/OnlineShop/Proiect_IS/SprinBootWebThymleaf",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
-      </set>
-    </attachedChunks>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Proiect_IS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Proiect_IS" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -60,6 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716025848564</updated>
       <workItem from="1716025849623" duration="153000" />
+      <workItem from="1716038244930" duration="35000" />
     </task>
     <servers />
   </component>
