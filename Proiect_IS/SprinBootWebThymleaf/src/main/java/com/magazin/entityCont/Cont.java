@@ -22,6 +22,9 @@ public class Cont {
     @Getter
     private String nume;
 
+    public Cont(int i, String john, String mail, String password) {
+    }
+
     public Integer getId() {
         return id;
     }
