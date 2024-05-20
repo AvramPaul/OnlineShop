@@ -2,6 +2,8 @@ package com.magazin.controller;
 
 import com.magazin.Service.UserService;
 import com.magazin.entityCont.Cont;
+import com.magazin.entityCont.ContLogat;
+import com.magazin.repositoryCont.ContLogatRepository;
 import com.magazin.repositoryCont.ContRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ContWebController {
     @Autowired
     ContRepository repository;
+
+    @Autowired
+    ContLogatRepository contLogatRepository;
 
     @GetMapping("/conturi")
     public String getListaConturi(Model model) {
@@ -39,7 +44,7 @@ public class ContWebController {
         return "redirect:/conturi";
     }
 
-    @GetMapping("/Register")
+    @GetMapping("/register")
     public String loadRegisterPage() {
         return "RegisterPage";
     }
@@ -54,13 +59,14 @@ public class ContWebController {
 
         repository.save(cont);
 
-        return "redirect:/Register";
+        return "redirect:/register";
     }
     @Autowired
     private UserService userService;
 
     @GetMapping("/login")
     public String showLoginForm() {
+        contLogatRepository.deleteAll();
         return "login";
     }
 
@@ -69,6 +75,8 @@ public class ContWebController {
         if (userService.isValidUser(email, password)) {
             // User is valid, proceed with login
             // Here you might set up session or token-based authentication
+            contLogatRepository.save(userService.whichUser(email, password));
+            System.out.println();
             return "redirect:/produse";
         } else {
             // Invalid credentials, redirect back to login page with an error message
