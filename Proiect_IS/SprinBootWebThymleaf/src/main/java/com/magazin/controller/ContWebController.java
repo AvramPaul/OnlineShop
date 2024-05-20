@@ -1,5 +1,6 @@
 package com.magazin.controller;
 
+import com.magazin.Service.UserService;
 import com.magazin.entityCont.Cont;
 import com.magazin.repositoryCont.ContRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,24 @@ public class ContWebController {
         repository.save(cont);
 
         return "redirect:/Register";
+    }
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password) {
+        if (userService.isValidUser(email, password)) {
+            // User is valid, proceed with login
+            // Here you might set up session or token-based authentication
+            return "redirect:/produse";
+        } else {
+            // Invalid credentials, redirect back to login page with an error message
+            return "redirect:/login?error";
+        }
     }
 }
