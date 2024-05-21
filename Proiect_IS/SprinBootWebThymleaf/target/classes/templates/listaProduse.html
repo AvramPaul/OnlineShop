@@ -65,8 +65,8 @@
 <header>
 
 </header>
-<a href="/adaugare_produse" class="btn btn-primary fixed-button">Adauga Produs la vanzare</a>
-<a href="/conturi" class="btn btn-info fixed-button" style="top: 70px;">Administreaza conturi (admin only)</a>
+<a th:if="${isVanzator}" href="/adaugare_produse" class="btn btn-primary fixed-button">Adauga Produs la vanzare</a>
+<a th:if="${isAdmin}" href="/conturi" class="btn btn-info fixed-button" style="top: 70px;">Administreaza conturi (admin only)</a>
 <a href="/login" class="btn btn-danger fixed-button" style="top: 120px;">Logout</a>
 <div class="container">
     <h1 class="mt-5 mb-4">Lista de produse</h1>
@@ -80,6 +80,7 @@
                     <span th:unless="${produs.negociabil}" th:text="${produs.pret + ' RON'}"></span>
                 </div>
                 <div class="seller-badge" th:text="'Vanzator: '+${produs.vanzator}"></div>
+                <a th:if="${isCumparator}" th:href="'/cumpara?id=' + ${produs.id}" class="btn btn-success">Cumpara</a>
             </div>
         </div>
     </div>

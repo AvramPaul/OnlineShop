@@ -35,7 +35,7 @@ public class ContWebControllerTests {
     @Test
     public void testGetListaConturi() {
         List<Cont> conturi = new ArrayList<>();
-        conturi.add(new Cont(1, "John", "john@example.com", "password"));
+        conturi.add(new Cont(1, "john@example.com", "john", "password", "vanzator"));
         when(contRepository.findAll()).thenReturn(conturi);
 
         String viewName = contWebController.getListaConturi(model);
