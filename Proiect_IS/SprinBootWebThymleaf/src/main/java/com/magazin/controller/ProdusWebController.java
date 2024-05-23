@@ -27,15 +27,21 @@ public class ProdusWebController {
         boolean isVanzator = false;
         boolean isCumparator = false;
         boolean isAdmin = false;
+        boolean isLogat = false;
+        String numeUser = "";
         if (!contLogatList.isEmpty()) {
             ContLogat contLogat = contLogatList.get(0);  // Presupunem că există doar un singur utilizator logat
+            isLogat = true;
             isVanzator = "vanzator".equals(contLogat.getRole());
             isCumparator = "cumparator".equals(contLogat.getRole());
             isAdmin = "admin".equals(contLogat.getRole());
+            numeUser = contLogat.getNume();
         }
         model.addAttribute("isVanzator", isVanzator);
         model.addAttribute("isCumparator", isCumparator);
         model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("isLogat", isLogat);
+        model.addAttribute("nume", numeUser);
         model.addAttribute("produse", repository.findAll());
         return "listaProduse";
     }

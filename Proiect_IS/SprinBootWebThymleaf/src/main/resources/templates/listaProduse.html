@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -11,6 +10,11 @@
         body {
             background-color: #333333;
             color: #ffffff;
+        }
+        body::before{
+        display: block;
+        content: '';
+        height: 30px;
         }
 
         .product-container {
@@ -62,14 +66,49 @@
     </style>
 </head>
 <body>
-<header>
 
-</header>
-<a th:if="${isVanzator}" href="/adaugare_produse" class="btn btn-primary fixed-button">Adauga Produs la vanzare</a>
-<a th:if="${isAdmin}" href="/conturi" class="btn btn-info fixed-button" style="top: 70px;">Administreaza conturi (admin only)</a>
-<a href="/login" class="btn btn-danger fixed-button" style="top: 120px;">Logout</a>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+    <div class="container">
+        <a href="index.html" class="navbar-brand">eGam</a>
+
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a th:if="${isVanzator}" href="/adaugare_produse" class="nav-link">Adauga Produs</a>
+                </li>
+                <li class="nav-item">
+                    <a th:if="${isAdmin}" href="/conturi" class="nav-link">Conturi (Admin only)</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <span class="navbar-text" th:if="${isLogat}">Bun venit <span class="navbar-text" th:if="${isLogat}" th:text="${nume}"></span>!</span>
+                <li class="nav-item px-2">
+                    <a href="/login" class="nav-link" th:if="${isLogat}">Logout</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/login" class="nav-link" th:unless="${isLogat}">Intra in cont</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/register" class="nav-link" th:unless="${isLogat}">Fa-ti cont</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container">
-    <h1 class="mt-5 mb-4">Lista de produse</h1>
+    <h1 class="mt-5">Lista de produse</h1>
     <div class="row">
         <div th:each="produs : ${produse}" class="col-md-4">
             <div class="product-container">
@@ -85,6 +124,10 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
 
