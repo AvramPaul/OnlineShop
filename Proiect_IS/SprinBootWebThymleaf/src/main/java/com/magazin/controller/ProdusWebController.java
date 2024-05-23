@@ -50,16 +50,22 @@ public class ProdusWebController {
         return "vindeProdus";
     }
     @GetMapping("/adaugare_produs")
-    public String adaugareProdus(@RequestParam String denumire, @RequestParam float pret, @RequestParam String descriere) {
+    public String adaugareProdus(@RequestParam String denumire, @RequestParam float pret, @RequestParam String descriere, @RequestParam(required = false) Boolean negociabil){
         Produs produs = new Produs();
         produs.setDenumire(denumire);
         produs.setPret(pret);
         produs.setDescriere(descriere);
+        produs.setNegociabil(negociabil != null ? negociabil : false);
         List<ContLogat> contlogat = contLogatRepository.findAll();
         ContLogat contLogat = contlogat.stream().findFirst().get();
         produs.setVanzator(contLogat.getNume());
         repository.save(produs);
 
+        return "redirect:/produse";
+    }
+    @GetMapping("/sterge")
+    public String stergeProdus(@RequestParam int id) {
+        repository.deleteById(id);
         return "redirect:/produse";
     }
 }

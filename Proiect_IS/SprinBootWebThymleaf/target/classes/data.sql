@@ -1,5 +1,5 @@
 
-INSERT INTO cont(email, nume, parola) VALUES ("paulavram@yahoo.com", "AvramPaul", "12345");
+INSERT INTO cont(email, nume, parola, role) VALUES ("paulavram@yahoo.com", "AvramPaul", "12345", "admin");
 INSERT INTO cont(email, nume, parola) VALUES ("laura@gmail.com", "RadulescuLaura", "parolasecure123");
 INSERT INTO cont(email, nume, parola) VALUES ("cristi@yahoo.com", "PopaCristian", "password456");
 INSERT INTO cont(email, nume, parola) VALUES ("ana@hotmail.com", "StancuAna", "securepassword789");

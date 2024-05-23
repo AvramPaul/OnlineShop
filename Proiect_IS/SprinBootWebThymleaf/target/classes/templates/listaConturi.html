@@ -69,7 +69,8 @@
         <div th:each="cont : ${conturi}" class="col-md-4">
             <div class="product-container">
                 <h2 class="product-title" th:text="${cont.email}"></h2>
-                <p class="product-description" th:text="${cont.nume}"></p>
+                <p class="product-description" th:text="${cont.nume}">
+                <p class="product-description" th:text="${cont.role}"></p>
                 <a th:href="@{/stergere_cont(id=${cont.id})}" class="btn btn-danger">Șterge cont</a>
 
             </div>
