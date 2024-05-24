@@ -1,18 +1,19 @@
 
+INSERT INTO cont(email, nume, parola, role) VALUES ("admin@admin.admin", "ADMIN", "admin", "admin");
 INSERT INTO cont(email, nume, parola, role) VALUES ("paulavram@yahoo.com", "AvramPaul", "12345", "admin");
-INSERT INTO cont(email, nume, parola) VALUES ("laura@gmail.com", "RadulescuLaura", "parolasecure123");
-INSERT INTO cont(email, nume, parola) VALUES ("cristi@yahoo.com", "PopaCristian", "password456");
-INSERT INTO cont(email, nume, parola) VALUES ("ana@hotmail.com", "StancuAna", "securepassword789");
-INSERT INTO cont(email, nume, parola) VALUES ("ionut@gmail.com", "MihaiIonut", "qwerty123");
-INSERT INTO cont(email, nume, parola) VALUES ("diana@yahoo.com", "PredaDiana", "password789");
-INSERT INTO cont(email, nume, parola) VALUES ("vlad@hotmail.com", "NeaguVlad", "securepass123");
-INSERT INTO cont(email, nume, parola) VALUES ("andreea@gmail.com", "DumitrescuAndreea", "qwerty456");
-INSERT INTO cont(email, nume, parola) VALUES ("george@yahoo.com", "IonescuGeorge", "password1234");
-INSERT INTO cont(email, nume, parola) VALUES ("elena@hotmail.com", "StoicaElena", "securepass456");
-INSERT INTO cont(email, nume, parola) VALUES ("marius@gmail.com", "PopescuMarius", "qwerty789");
-INSERT INTO cont(email, nume, parola) VALUES ("andrei@yahoo.com", "PopescuAndrei", "password123");
-INSERT INTO cont(email, nume, parola) VALUES ("maria@gmail.com", "IonescuMaria", "securepass");
-INSERT INTO cont(email, nume, parola) VALUES ("alexandru@hotmail.com", "GeorgescuAlexandru", "qwerty");
+INSERT INTO cont(email, nume, parola, role) VALUES ("laura@gmail.com", "RadulescuLaura", "parolasecure123", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("cristi@yahoo.com", "PopaCristian", "password456", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("ana@hotmail.com", "StancuAna", "securepassword789", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("ionut@gmail.com", "MihaiIonut", "qwerty123", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("diana@yahoo.com", "PredaDiana", "password789", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("vlad@hotmail.com", "NeaguVlad", "securepass123", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("andreea@gmail.com", "DumitrescuAndreea", "qwerty456", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("george@yahoo.com", "IonescuGeorge", "password1234", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("elena@hotmail.com", "StoicaElena", "securepass456", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("marius@gmail.com", "PopescuMarius", "qwerty789", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("andrei@yahoo.com", "PopescuAndrei", "password123", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("maria@gmail.com", "IonescuMaria", "securepass", "vanzator");
+INSERT INTO cont(email, nume, parola, role) VALUES ("alexandru@hotmail.com", "GeorgescuAlexandru", "qwerty", "vanzator");
 
 insert into produs(denumire, pret, negociabil, descriere, vanzator) values ("Aspirator", 256.99, FALSE, "Aspirator de inalta calitate", "AvramPaul");
 INSERT INTO produs(denumire, pret, negociabil, descriere, vanzator) VALUES ("Fier de călcat", 300, TRUE,  "Fier de călcat cu abur", "RadulescuLaura");
