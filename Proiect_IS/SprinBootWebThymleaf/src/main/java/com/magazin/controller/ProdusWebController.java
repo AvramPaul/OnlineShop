@@ -2,7 +2,9 @@ package com.magazin.controller;
 
 import com.magazin.entityCont.ContLogat;
 import com.magazin.entityProdus.Produs;
+import com.magazin.entityProdus.ProdusInCos;
 import com.magazin.repositoryCont.ContLogatRepository;
+import com.magazin.repositoryProdus.ProdusInCosRepository;
 import com.magazin.repositoryProdus.ProdusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,13 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProdusWebController {
 
     @Autowired
     ProdusRepository repository;
-
+    @Autowired
+    ProdusInCosRepository produsInCosRepository;
     @Autowired
     ContLogatRepository contLogatRepository;
 
@@ -67,5 +71,46 @@ public class ProdusWebController {
     public String stergeProdus(@RequestParam int id) {
         repository.deleteById(id);
         return "redirect:/produse";
+    }
+    @GetMapping("/cumpara")
+    public String adaugaInCos(@RequestParam int id)
+    {
+        Optional<Produs> produs = repository.findById(id); //aflam produsul pe care l-a cumparat
+        List<ContLogat> contlogat = contLogatRepository.findAll(); // aflam contul care este logat
+        ContLogat contLogat = contlogat.stream().findFirst().get();
+
+        ProdusInCos produsInCos = new ProdusInCos(); //cream produsul care se va introduce in cos
+        produsInCos.setId(id);
+        produsInCos.setIdCumparator(contLogat.getId());
+        produsInCos.setDenumire(produs.get().getDenumire());
+        produsInCos.setPret(produs.get().getPret());
+        produsInCos.setNegociabil(produs.get().getNegociabil());
+        produsInCos.setDescriere(produs.get().getDescriere());
+        produsInCos.setVanzator(produs.get().getVanzator());
+
+        produsInCosRepository.save(produsInCos); //se salveaza in baza de date
+        return "redirect:/produse";
+    }
+
+    @GetMapping("/cos")
+    public String cosCumparaturi(Model model)
+    {
+        List<ContLogat> contLogatList = contLogatRepository.findAll();
+        ContLogat contLogat = contLogatList.get(0);
+        float suma=0;
+        List<ProdusInCos> produseInCos = produsInCosRepository.findAllByIdCumparator(contLogat.getId());
+        for (ProdusInCos produs : produseInCos) {
+            suma += produs.getPret();
+        }
+        model.addAttribute("total_plata", suma);
+        model.addAttribute("produse", produsInCosRepository.findAllByIdCumparator(contLogat.getId()));
+
+        return "cosCumparaturi";
+    }
+    @GetMapping("sterge_din_cos")
+    public String cosCumparaturi(@RequestParam int id)
+    {
+        produsInCosRepository.deleteById(id);
+        return "redirect:/cos";
     }
 }
