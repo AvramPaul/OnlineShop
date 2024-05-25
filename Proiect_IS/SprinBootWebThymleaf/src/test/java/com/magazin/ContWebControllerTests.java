@@ -2,6 +2,7 @@ package com.magazin;
 
 import com.magazin.controller.ContWebController;
 import com.magazin.entityCont.Cont;
+import com.magazin.entityCont.ContAnulat;
 import com.magazin.repositoryCont.ContRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,11 +13,12 @@ import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ContWebControllerTests {
+public class ContWebControllerTests<ViorelSoitu> {
 
     @InjectMocks
     private ContWebController contWebController;
@@ -59,11 +61,16 @@ public class ContWebControllerTests {
     @Test
     public void testDeleteAccount() {
         Integer id = 1;
+        Cont cont = new Cont();
+        cont.setId(id);
+
+        when(contRepository.findById(id)).thenReturn(Optional.of(cont));
 
         String viewName = contWebController.deleteAccount(id);
 
         assertEquals("redirect:/conturi", viewName);
         verify(contRepository).deleteById(id);
+
     }
 
     @Test
@@ -93,7 +100,7 @@ public class ContWebControllerTests {
 
         String viewName = contWebController.deleteAccount(null);
 
-        
+
         assertEquals("redirect:/conturi", viewName);
         verify(contRepository, never()).deleteById(any());
     }
