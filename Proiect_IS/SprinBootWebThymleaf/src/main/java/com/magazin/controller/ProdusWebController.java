@@ -32,7 +32,6 @@ public class ProdusWebController {
         boolean isCumparator = false;
         boolean isAdmin = false;
         boolean isLogat = false;
-        boolean isHim = false;
         String numeUser = "";
         if (!contLogatList.isEmpty()) {
             ContLogat contLogat = contLogatList.get(0);  // Presupunem că există doar un singur utilizator logat
@@ -54,6 +53,20 @@ public class ProdusWebController {
     public String vindeProdus(Model model) {
         return "vindeProdus";
     }
+
+    @GetMapping("/produse_user")
+    public String produseUser(Model model){
+        List<ContLogat> contLogatList = contLogatRepository.findAll();
+        String numeUser = "";
+        if (!contLogatList.isEmpty()) {
+            ContLogat contLogat = contLogatList.get(0);  // Presupunem că există doar un singur utilizator logat
+            numeUser = contLogat.getNume();
+        }
+        model.addAttribute("nume", numeUser);
+        model.addAttribute("produseUser", repository.findAllByVanzator(numeUser));
+        return "produseUser";
+    }
+
     @GetMapping("/adaugare_produs")
     public String adaugareProdus(@RequestParam String denumire, @RequestParam float pret, @RequestParam String descriere, @RequestParam(required = false) Boolean negociabil){
         Produs produs = new Produs();
@@ -73,6 +86,13 @@ public class ProdusWebController {
         repository.deleteById(id);
         return "redirect:/produse";
     }
+
+    @GetMapping("/sterge1")
+    public String stergeProdus1(@RequestParam int id) {
+        repository.deleteById(id);
+        return "redirect:/produse_user";
+    }
+
     @GetMapping("/cumpara")
     public String adaugaInCos(@RequestParam int id)
     {

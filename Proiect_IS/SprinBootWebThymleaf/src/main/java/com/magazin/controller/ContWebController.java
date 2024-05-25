@@ -2,7 +2,9 @@ package com.magazin.controller;
 
 import com.magazin.Service.UserService;
 import com.magazin.entityCont.Cont;
+import com.magazin.entityCont.ContAnulat;
 import com.magazin.entityCont.ContLogat;
+import com.magazin.repositoryCont.ContAnulatRepository;
 import com.magazin.repositoryCont.ContLogatRepository;
 import com.magazin.repositoryCont.ContRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 public class ContWebController {
     @Autowired
@@ -19,6 +23,9 @@ public class ContWebController {
 
     @Autowired
     ContLogatRepository contLogatRepository;
+
+    @Autowired
+    ContAnulatRepository contAnulatRepository;
 
     @GetMapping("/conturi")
     public String getListaConturi(Model model) {
@@ -40,6 +47,15 @@ public class ContWebController {
 
     @GetMapping("/stergere_cont")
     public String deleteAccount(@RequestParam("id") Integer id) {
+        Optional<Cont> cont;
+        cont = repository.findById(id);
+        ContAnulat ca = new ContAnulat();
+        ca.setEmail(cont.get().getEmail());
+        ca.setNume(cont.get().getNume());
+        ca.setRole(cont.get().getRole());
+        ca.setParola(cont.get().getParola());
+        ca.setId(cont.get().getId());
+        contAnulatRepository.save(ca);
         repository.deleteById(id);
         return "redirect:/conturi";
     }

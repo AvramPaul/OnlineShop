@@ -1,147 +1,4 @@
-<!--<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista produse</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-          crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #333333;
-            color: #ffffff;
-        }
-        body::before{
-        display: block;
-        content: '';
-        height: 30px;
-        }
 
-        .product-container {
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            color: #333333;
-            position: relative; /* Asigură poziționarea relativă a containerului produsului */
-        }
-
-        .product-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #000000;
-        }
-
-        .product-description {
-            font-size: 16px;
-            color: #555555;
-            margin-bottom: 10px; /* Reducem spațiul dintre descriere și badge-ul de vânzător */
-            min-height: 70px; /* Setăm înălțimea minimă pentru a asigura suficient spațiu pentru descriere */
-        }
-
-        .seller-badge {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background-color: #007bff;
-            color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-
-        .fixed-button {
-            position: fixed;
-            top: 20px; /* Distanța față de partea de sus a ecranului */
-            right: 20px; /* Distanța față de partea dreaptă a ecranului */
-            z-index: 999; /* Asigură că butonul va fi întotdeauna deasupra altor elemente */
-        }
-
-        .negotiable-price {
-            color: red; /* Schimbăm culoarea textului la roșu */
-            font-weight: bold; /* Facem textul mai îngroșat pentru a fi mai vizibil */
-        }
-    </style>
-</head>
-<body>
-
-
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
-    <div class="container">
-        <a href="index.html" class="navbar-brand">OLY</a>
-
-        <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navmenu"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navmenu">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a th:if="${isVanzator}" href="/adaugare_produse" class="nav-link">Adauga Produs</a>
-                </li>
-                <li class="nav-item">
-                    <a th:if="${isAdmin}" href="/conturi" class="nav-link">Conturi (Admin only)</a>
-                </li>
-
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <span class="navbar-text" th:if="${isLogat}">Bun venit <span class="navbar-text" th:if="${isLogat}" th:text="${nume}"></span>!</span>
-                <li class="nav-item px-2">
-                    <a href="/login" class="nav-link" th:if="${isLogat}">Logout</a>
-                </li>
-                <li class="nav-item px-2">
-                    <a href="/login" class="nav-link" th:unless="${isLogat}">Intra in cont</a>
-                </li>
-                <li class="nav-item px-2">
-                    <a href="/register" class="nav-link" th:unless="${isLogat}">Fa-ti cont</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-    <h1 class="mt-5">Lista de produse</h1>
-    <div class="row">
-        <div th:each="produs : ${produse}" class="col-md-4">
-            <div class="product-container">
-                <div class="product-title" th:text="${produs.denumire}"></div>
-                <div class="product-description" th:text="${produs.descriere}"></div>
-                <div class="product-description">
-                    <span th:if="${produs.negociabil}" class="negotiable-price">NEGOCIABIL</span>
-                    <span th:unless="${produs.negociabil}" th:text="${produs.pret + ' RON'}"></span>
-                </div>
-                <div class="seller-badge" th:text="'Vanzator: '+${produs.vanzator}"></div>
-                <div th:if="${isCumparator}">
-                    <a th:if="${!produs.negociabil}" th:href="'/cumpara?id=' + ${produs.id}" class="btn btn-success">Cumpara</a>
-                    <div th:if="${produs.negociabil}">
-                        <form th:action="'/ofera?id=' + ${produs.id}" method="post">
-                            <div class="input-group mt-2">
-                                <input type="number" class="form-control" name="oferta" placeholder="Introdu suma">
-                                <button type="submit" class="btn btn-primary">Oferă</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <a th:if="${isAdmin}" th:href="'/sterge?id=' + ${produs.id}" class="btn btn-danger mt-2">Sterge</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
-</html>
--->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -213,7 +70,7 @@
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="index.html" class="navbar-brand">OLY</a>
+        <a href="#" class="navbar-brand">OLY</a>
 
         <button
                 class="navbar-toggler"
@@ -228,6 +85,9 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a th:if="${isVanzator}" href="/adaugare_produse" class="nav-link">Adauga Produs</a>
+                </li>
+                <li class="nav-item">
+                    <a th:if="${isVanzator}" href="/produse_user" class="nav-link">Produsele Mele</a>
                 </li>
                 <li class="nav-item">
                     <a th:if="${isAdmin}" href="/conturi" class="nav-link">Conturi (Admin only)</a>
@@ -279,7 +139,6 @@
                 </div>
 
                 <a th:if="${isAdmin}" th:href="'/sterge?id=' + ${produs.id}" class="btn btn-danger mt-2">Sterge</a>
-                <a th:if="${isVanzator}" th:href="'/sterge?id=' + ${produs.id}" class="btn btn-danger mt-2">Sterge</a>
             </div>
         </div>
     </div>

@@ -72,12 +72,17 @@
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="#" class="navbar-brand">OLY</a>
-        <span class="navbar-text">Cos Cumparaturi</span>
-        <ul class="navbar-nav ms-auto">
-
+        <a href="/produse" class="navbar-brand">OLY</a>
+        <ul class="navbar-nav">
             <li class="nav-item px-2">
                 <a href="/produse" class="nav-link">Inapoi la Produse</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+            <span class="navbar-text" >Bun venit <span class="navbar-text" th:text="${nume}"></span>!</span>
+            <li class="nav-item px-2">
+                <a href="/login" class="nav-link">Logout</a>
             </li>
         </ul>
     </div>
