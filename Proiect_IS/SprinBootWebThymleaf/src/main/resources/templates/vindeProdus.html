@@ -85,7 +85,7 @@
                 <input type="text" id="productName" name="denumire" class="form-input" required>
             </div>
             <div class="form-group">
-                <label class="form-label" for="productPrice">Preț:</label>
+                <label class="form-label" id="productPriceLabel" for="productPrice">Preț:</label>
                 <input type="number" id="productPrice" name="pret" class="form-input" step="0.01" required>
             </div>
             <div class="form-group">
@@ -93,13 +93,11 @@
                 <textarea id="productDescription" name="descriere" class="form-textarea" required></textarea>
             </div>
             <div class="form-group">
-                <input type="checkbox" id="negotiable" name="negociabil">
+                <input type="checkbox" id="negotiable" name="negociabil" onclick="togglePriceLabel()">
                 <label class="form-label" for="negotiable">Negociabil</label>
             </div>
             <button type="submit" class="submit-button">Adaugă produs</button>
             <button type="button" class="submit-button" onclick="window.location.href='/produse'">Înapoi</button>
-
-
         </form>
     </div>
 </div>

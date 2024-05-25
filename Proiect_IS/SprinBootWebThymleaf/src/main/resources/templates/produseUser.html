@@ -61,7 +61,31 @@
             margin-top: 10px; /* Ajustăm marginea pentru input group */
         }
 
+        .offer-list {
+            margin-top: 10px;
+        }
+
+        .offer-item {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 5px;
+        }
+
+        .below-minimum {
+            display: none;
+        }
+
     </style>
+    <script>
+        function toggleOffers(id) {
+            const checkbox = document.getElementById('toggleOffers-' + id);
+            const offers = document.querySelectorAll('.below-minimum-' + id);
+            offers.forEach(offer => {
+                offer.style.display = checkbox.checked ? 'block' : 'none';
+            });
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
@@ -85,7 +109,7 @@
 
             </ul>
             <ul class="navbar-nav ms-auto">
-                <span class="navbar-text" >Bun venit <span class="navbar-text" th:text="${nume}"></span>!</span>
+                <span class="navbar-text">Bun venit <span class="navbar-text" th:text="${nume}"></span>!</span>
                 <li class="nav-item px-2">
                     <a href="/login" class="nav-link">Logout</a>
                 </li>
@@ -106,10 +130,23 @@
                     <span th:unless="${produs.negociabil}" th:text="${produs.pret + ' RON'}"></span>
                 </div>
                 <div class="seller-badge" th:text="'Vanzator: '+${produs.vanzator}"></div>
-
-                <div th:if="${isCumparator}">
-                    <a th:if="${!produs.negociabil}" th:href="'/cumpara?id=' + ${produs.id}" class="btn btn-success">Cumpara</a>
+                <div th:if="${produs.negociabil}">
+                    <div class="offer-list">
+                        Oferte peste pret minim:
+                        <div th:each="oferta : ${produs.oferte}" class="offer-item" th:classappend="${oferta < produs.pret} ? 'below-minimum below-minimum-[[${produs.id}]]'">
+                            <span th:text="${oferta + ' RON'}"></span>
+                            <form th:action="'/accepta_oferta'" method="post">
+                                <input type="hidden" name="id" th:value="${produs.id}" />
+                                <input type="hidden" name="oferta" th:value="${oferta}" />
+                                <button type="submit" class="btn btn-primary btn-sm">Acceptă</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+
+
+
+
                 <a th:href="'/sterge1?id=' + ${produs.id}" class="btn btn-danger mt-2">Sterge</a>
             </div>
         </div>

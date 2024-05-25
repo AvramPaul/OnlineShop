@@ -131,12 +131,13 @@
                     <div th:if="${produs.negociabil}">
                         <form th:action="'/ofera?id=' + ${produs.id}" method="post">
                             <div class="input-group mt-2">
-                                <input type="number" class="form-control" name="oferta" placeholder="Introdu suma">
+                                <input type="number" class="form-control" name="oferta" placeholder="Introdu suma" required>
                                 <button type="submit" class="btn btn-primary">Oferă</button>
                             </div>
                         </form>
                     </div>
                 </div>
+
 
                 <a th:if="${isAdmin}" th:href="'/sterge?id=' + ${produs.id}" class="btn btn-danger mt-2">Sterge</a>
             </div>

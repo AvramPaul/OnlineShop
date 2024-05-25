@@ -68,8 +68,6 @@
     </style>
 </head>
 <body>
-
-
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
     <div class="container">
         <a href="/produse" class="navbar-brand">OLY</a>
@@ -80,7 +78,7 @@
         </ul>
 
         <ul class="navbar-nav ms-auto">
-            <span class="navbar-text" >Bun venit <span class="navbar-text" th:text="${nume}"></span>!</span>
+            <span class="navbar-text">Bun venit <span class="navbar-text" th:text="${nume}"></span>!</span>
             <li class="nav-item px-2">
                 <a href="/login" class="nav-link">Logout</a>
             </li>
@@ -94,7 +92,7 @@
         <div class="cart-title">Produsele din coș:</div>
         <div th:each="produs : ${produse}" class="cart-item">
             <div class="cart-item-title" th:text="${produs.denumire}"></div>
-            <div class="cart-item-price" th:text="${produs.pret + ' RON'}"></div>
+            <div class="cart-item-price" th:text="${produs.ofertaAcceptata != null ? produs.ofertaAcceptata + ' RON' : produs.pret + ' RON'}"></div>
             <a th:href="'/sterge_din_cos?id=' + ${produs.id}" class="btn btn-danger btn-sm btn-remove">Elimină</a>
         </div>
         <div class="total-price">

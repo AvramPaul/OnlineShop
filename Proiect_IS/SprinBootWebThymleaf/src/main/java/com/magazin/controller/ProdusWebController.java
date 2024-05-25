@@ -1,5 +1,6 @@
 package com.magazin.controller;
 
+import com.magazin.Service.ProdusService;
 import com.magazin.entityCont.ContLogat;
 import com.magazin.entityProdus.Produs;
 import com.magazin.entityProdus.ProdusInCos;
@@ -10,13 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class ProdusWebController {
+
+
 
     @Autowired
     ProdusRepository repository;
@@ -134,4 +139,38 @@ public class ProdusWebController {
         produsInCosRepository.deleteById(id);
         return "redirect:/cos";
     }
+
+    @GetMapping("/accepta_oferta")
+    public String acceptOffer(@RequestParam int id) {
+        Optional<Produs> optionalProdus = repository.findById(id);
+
+        if (optionalProdus.isPresent()) {
+            Produs produs = optionalProdus.get();
+            produs.setVanzator(null);
+
+
+            repository.save(produs);
+        }
+
+        return "redirect:/produse";
+    }
+
+    @Autowired
+    private ProdusService produsService;
+
+    @PostMapping("/ofera")
+    public String submitOffer(@RequestParam("id") int produsId, @RequestParam("oferta") float oferta) {
+        produsService.addOffer(produsId, oferta);
+        return "redirect:/produse";
+    }
+
+    @PostMapping("/accepta_oferta")
+    public String acceptOffer(@RequestParam("id") int produsId, @RequestParam("oferta") float oferta) {
+        produsService.acceptOffer(produsId, oferta);
+        return "redirect:/produse";
+    }
+
+
+
+
 }
