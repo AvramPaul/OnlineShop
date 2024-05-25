@@ -32,6 +32,7 @@ public class ProdusWebController {
         boolean isCumparator = false;
         boolean isAdmin = false;
         boolean isLogat = false;
+        boolean isHim = false;
         String numeUser = "";
         if (!contLogatList.isEmpty()) {
             ContLogat contLogat = contLogatList.get(0);  // Presupunem că există doar un singur utilizator logat
