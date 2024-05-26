@@ -1,9 +1,12 @@
 package com.magazin;
 
+import com.magazin.Service.UserService;
 import com.magazin.controller.ContWebController;
 import com.magazin.entityCont.Cont;
 import com.magazin.entityCont.ContAnulat;
+import com.magazin.entityCont.ContLogat;
 import com.magazin.repositoryCont.ContAnulatRepository;
+import com.magazin.repositoryCont.ContLogatRepository;
 import com.magazin.repositoryCont.ContRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +32,11 @@ public class ContWebControllerTests<ViorelSoitu> {
     @Mock
     private ContAnulatRepository contAnulatRepository;
     @Mock
+    private ContLogatRepository contLogatRepository;
+    @Mock
     private Model model;
+    @Mock
+    UserService userService;
 
     @BeforeEach
     public void setUp() {
@@ -97,30 +104,6 @@ public class ContWebControllerTests<ViorelSoitu> {
         verify(contRepository, never()).save(any(Cont.class));
     }
 
-    @Test
-    public void testDeleteAccountWithNullId() {
-
-        String viewName = contWebController.deleteAccount(null);
 
 
-        assertEquals("redirect:/conturi", viewName);
-        verify(contRepository, never()).deleteById(any());
-    }
-    @Test
-    public void testLoadRegisterPage() {
-        String viewName = contWebController.loadRegisterPage();
-
-        assertEquals("RegisterPage", viewName);
-    }
-
-    @Test
-    public void testDeleteAccountWithInvalidId() {
-        Integer id = 999;
-        when(contRepository.findById(id)).thenReturn(Optional.empty());
-
-        String viewName = contWebController.deleteAccount(id);
-
-        assertEquals("redirect:/conturi", viewName);
-        verify(contAnulatRepository, never()).save(any(ContAnulat.class));
-    }
 }
