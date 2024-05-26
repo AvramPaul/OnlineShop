@@ -3,6 +3,7 @@ package com.magazin;
 import com.magazin.controller.ContWebController;
 import com.magazin.entityCont.Cont;
 import com.magazin.entityCont.ContAnulat;
+import com.magazin.repositoryCont.ContAnulatRepository;
 import com.magazin.repositoryCont.ContRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,8 @@ public class ContWebControllerTests<ViorelSoitu> {
 
     @Mock
     private ContRepository contRepository;
-
+    @Mock
+    private ContAnulatRepository contAnulatRepository;
     @Mock
     private Model model;
 
@@ -103,5 +105,22 @@ public class ContWebControllerTests<ViorelSoitu> {
 
         assertEquals("redirect:/conturi", viewName);
         verify(contRepository, never()).deleteById(any());
+    }
+    @Test
+    public void testLoadRegisterPage() {
+        String viewName = contWebController.loadRegisterPage();
+
+        assertEquals("RegisterPage", viewName);
+    }
+
+    @Test
+    public void testDeleteAccountWithInvalidId() {
+        Integer id = 999;
+        when(contRepository.findById(id)).thenReturn(Optional.empty());
+
+        String viewName = contWebController.deleteAccount(id);
+
+        assertEquals("redirect:/conturi", viewName);
+        verify(contAnulatRepository, never()).save(any(ContAnulat.class));
     }
 }
