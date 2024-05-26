@@ -92,7 +92,7 @@
         <div class="cart-title">Produsele din coș:</div>
         <div th:each="produs : ${produse}" class="cart-item">
             <div class="cart-item-title" th:text="${produs.denumire}"></div>
-            <div class="cart-item-price" th:text="${produs.ofertaAcceptata != null ? produs.ofertaAcceptata + ' RON' : produs.pret + ' RON'}"></div>
+            <div class="cart-item-price" th:text="${produs.pret + ' RON'}"></div>
             <a th:href="'/sterge_din_cos?id=' + ${produs.id}" class="btn btn-danger btn-sm btn-remove">Elimină</a>
         </div>
         <div class="total-price">
